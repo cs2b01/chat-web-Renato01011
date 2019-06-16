@@ -1,22 +1,18 @@
 $(function(){
-    var url = "http://127.0.0.1:5000/users";
+    var url = "http://127.0.0.1:5000/messages";
 
 
     $("#grid").dxDataGrid({
         dataSource: DevExpress.data.AspNet.createStore({
             key: "id",
             loadUrl: url ,
-            insertUrl: url ,
-            updateUrl: url ,
             deleteUrl: url ,
             onBeforeSend: function(method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
         }),
         editing: {
-            allowUpdating: true,
             allowDeleting: true,
-            allowAdding: true
         },
         remoteOperations: {
             sorting: true,
@@ -34,13 +30,13 @@ $(function(){
             dataType: "number",
             allowEditing: false
         }, {
-            dataField: "username"
+            dataField: "content"
         }, {
-            dataField: "name"
+            dataField: "sent_on"
         }, {
-            dataField: "fullname"
+            dataField: "user_from_id"
         }, {
-            dataField: "password"
-        }, ],
+            dataField: "user_to_id"
+        } ],
     }).dxDataGrid("instance");
 });

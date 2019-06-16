@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, Sequence, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from database import connector
+from time import gmtime, strftime
+
 
 class User(connector.Manager.Base):
     __tablename__ = 'users'
@@ -10,11 +12,12 @@ class User(connector.Manager.Base):
     password = Column(String(12))
     username = Column(String(12))
 
+
 class Message(connector.Manager.Base):
     __tablename__ = 'messages'
     id = Column(Integer, Sequence('message_id_seq'), primary_key=True)
     content = Column(String(500))
-    sent_on = Column(DateTime(timezone=True))
+    sent_on = Column(String(10), default=strftime("%Y-%m-%d %H:%M", gmtime()))
     user_from_id = Column(Integer, ForeignKey('users.id'))
     user_to_id = Column(Integer, ForeignKey('users.id'))
     user_from = relationship(User, foreign_keys=[user_from_id])
