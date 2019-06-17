@@ -1,8 +1,8 @@
 let currentUserId = 0;
 let currentClickedId = 0;
 
-function SortBySentOn(x,y) {
-    return ((x.sent_on == y.sent_on) ? 0 : ((x.sent_on > y.sent_on) ? 1 : -1));
+function SortById(x,y) {
+    return ((x.id == y.id) ? 0 : ((x.id > y.id) ? 1 : -1));
 }
 
 function whoami(){
@@ -67,7 +67,7 @@ function whoami(){
             dataType:'json',
             success: function(response){
 
-                response.sort(SortBySentOn);
+                response.sort(SortById);
 
                 $('#sent_messages').empty('');
                 i = 0;
