@@ -24,8 +24,7 @@ function getData(){
                     $('#loading').hide();
                     $('#fail').show()
                 }else{
-                    $('#loading').hide();
-                    $('#ok').show()
+                    window.location.href='/static/chat_2.html';
                 }
             }
         });
